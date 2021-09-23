@@ -1,0 +1,24 @@
+swagger: "2.0"
+info:
+  title: "Swagger Crud"
+  version: "1.0.0"
+
+host: "{{host_with_port}}"
+
+schemes:
+  - "https"
+  - "http"
+paths:
+  /ping:
+    get:
+      tags:
+        - "Alive"
+      summary: "Ping"
+      operationId: "ping"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "pong response"
+      x-swagger-router-controller: "server.controllers.ping"
