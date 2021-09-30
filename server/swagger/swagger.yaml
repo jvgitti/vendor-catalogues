@@ -26,7 +26,7 @@ paths:
     post:
       tags:
         - "Vendor"
-      summary: "Endpoint para adicionar usuario"
+      summary: "Endpoint to create vendor"
       operationId: "post_vendor"
       x-swagger-router-controller: "server.controllers.vendor_controller"
       produces:
@@ -41,26 +41,26 @@ paths:
             $ref: "#/definitions/VendorInput"
       responses:
         200:
-          description: "Retorna o usuario inserido"
+          description: "Return the vendor created"
     get:
       tags:
-        - "usuario"
-      summary: "Endpoint para retornar todos usuarios"
-      operationId: "get_usuarios"
-      x-swagger-router-controller: "server.controllers.users_controller"
+        - "Vendor"
+      summary: "Endpoint to return all the vendors"
+      operationId: "get_vendors"
+      x-swagger-router-controller: "server.controllers.vendor_controller"
       produces:
         - "application/json"
       parameters: []
       responses:
         200:
-          description: "Retorna todos os usuários"
-  /usuario/{id}:
+          description: "Return all the vendors"
+  /vendor/{id}:
     delete:
       tags:
-        - "usuario"
-      summary: "Endpoint para deletar usuario por id"
-      operationId: "delete_usuario"
-      x-swagger-router-controller: "server.controllers.users_controller"
+        - "Vendor"
+      summary: "Endpoint to delete vendor by Id"
+      operationId: "delete_vendor"
+      x-swagger-router-controller: "server.controllers.vendor_controller"
       produces:
         - "application/json"
       parameters:
@@ -69,8 +69,140 @@ paths:
           required: True
           type: integer
       responses:
+        201:
+          description: ""
+    put:
+      tags:
+        - "Vendor"
+      summary: "Endpoint to update vendor"
+      operationId: "put_vendor"
+      x-swagger-router-controller: "server.controllers.vendor_controller"
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: True
+          schema:
+            $ref: "#/definitions/VendorInput"
+        - name: "id"
+          in: "path"
+          required: True
+          type: integer
+      responses:
         200:
-          description: "Deleta usuario por id"
+          description: "Return the vendor updated"
+    get:
+      tags:
+        - "Vendor"
+      summary: "Endpoint to get vendor by Id"
+      operationId: "get_vendor"
+      x-swagger-router-controller: "server.controllers.vendor_controller"
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Return the vendor"
+  /product:
+    post:
+      tags:
+        - "Product"
+      summary: "Endpoint to create product"
+      operationId: "post_product"
+      x-swagger-router-controller: "server.controllers.product_controller"
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: True
+          schema:
+            $ref: "#/definitions/ProductInput"
+      responses:
+        200:
+          description: "Return the product created"
+    get:
+      tags:
+        - "Product"
+      summary: "Endpoint to return all the products"
+      operationId: "get_products"
+      x-swagger-router-controller: "server.controllers.product_controller"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Return all the products"
+  /product/{id}:
+    delete:
+      tags:
+        - "Product"
+      summary: "Endpoint to delete product by Id"
+      operationId: "delete_product"
+      x-swagger-router-controller: "server.controllers.product_controller"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: True
+          type: integer
+      responses:
+        201:
+          description: ""
+    put:
+      tags:
+        - "Product"
+      summary: "Endpoint to update product"
+      operationId: "put_product"
+      x-swagger-router-controller: "server.controllers.product_controller"
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: True
+          schema:
+            $ref: "#/definitions/ProductInput"
+        - name: "id"
+          in: "path"
+          required: True
+          type: integer
+      responses:
+        200:
+          description: "Return the product updated"
+    get:
+      tags:
+        - "Product"
+      summary: "Endpoint to get product by Id"
+      operationId: "get_product"
+      x-swagger-router-controller: "server.controllers.product_controller"
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Return the product"
+
 
 definitions:
   VendorInput:
@@ -80,7 +212,32 @@ definitions:
         type: "integer"
       Name:
         type: "string"
+        x-nullable: false
       CNPJ:
         type: "string"
+        x-nullable: false
       City:
         type: "string"
+    required:
+      - Name
+      - CNPJ
+  ProductInput:
+    type: "object"
+    properties:
+      Id:
+        type: "integer"
+      Name:
+        type: "string"
+        x-nullable: false
+      Code:
+        type: "string"
+        x-nullable: false
+      Price:
+        type: "number"
+      Vendor_Id:
+        type: "integer"
+        x-nullable: false
+    required:
+      - Name
+      - Code
+      - Vendor_Id
