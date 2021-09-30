@@ -22,3 +22,65 @@ paths:
         200:
           description: "pong response"
       x-swagger-router-controller: "server.controllers.ping"
+  /vendor:
+    post:
+      tags:
+        - "Vendor"
+      summary: "Endpoint para adicionar usuario"
+      operationId: "post_vendor"
+      x-swagger-router-controller: "server.controllers.vendor_controller"
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: True
+          schema:
+            $ref: "#/definitions/VendorInput"
+      responses:
+        200:
+          description: "Retorna o usuario inserido"
+    get:
+      tags:
+        - "usuario"
+      summary: "Endpoint para retornar todos usuarios"
+      operationId: "get_usuarios"
+      x-swagger-router-controller: "server.controllers.users_controller"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Retorna todos os usuários"
+  /usuario/{id}:
+    delete:
+      tags:
+        - "usuario"
+      summary: "Endpoint para deletar usuario por id"
+      operationId: "delete_usuario"
+      x-swagger-router-controller: "server.controllers.users_controller"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: True
+          type: integer
+      responses:
+        200:
+          description: "Deleta usuario por id"
+
+definitions:
+  VendorInput:
+    type: "object"
+    properties:
+      Id:
+        type: "integer"
+      Name:
+        type: "string"
+      CNPJ:
+        type: "string"
+      City:
+        type: "string"
