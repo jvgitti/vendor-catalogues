@@ -12,7 +12,7 @@
     
     -> create database db_vendor_catalogues;
     
-4 - Is necessary to create a file .env with the variables, in the server directory, with the parameters: 
+4 - A file .env is necessary in the server directory with the variables. Parameters: 
 
     DB_HOST=localhost
     
