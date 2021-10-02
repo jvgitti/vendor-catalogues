@@ -12,7 +12,11 @@
     
     -> create database db_vendor_catalogues;
     
-4 - A file .env is necessary in the server directory with the variables. Parameters: 
+4 - To run the migration:
+
+-> alembic upgrade head
+
+5 - A file .env is necessary in the server directory with the variables. Parameters: 
 
     DB_HOST=localhost
     
@@ -26,12 +30,12 @@
     
     PORT=5000
     
-5 - To build the project in a docker, run:
+6 - To build the project in a docker, run:
 
     -> docker build -t vendor-catalogues-api:latest .
     
     -> docker run -d -p 5000:5000 vendor-catalogues-api
     
-6 - Acess the project in http://127.0.0.1:5000
+7 - Acess the project in http://127.0.0.1:5000
 
-7 - Swagger documentation in http://127.0.0.1:5000/ui
+8 - Swagger documentation in http://127.0.0.1:5000/ui
